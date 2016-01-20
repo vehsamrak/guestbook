@@ -12,13 +12,15 @@ abstract class AbstractController
 {
 
     /**
-     * @param $actionName
+     * @param string|null $actionName
      * @return mixed
      * @throws ActionNotExist
      */
     public function processAction($actionName)
     {
-        if (method_exists(self::class, $actionName) && is_callable([self::class, $actionName])) {
+        $actionName = ($actionName ?? 'index') . 'Action';
+
+        if (method_exists(static::class, $actionName) && is_callable([static::class, $actionName])) {
             return static::$actionName();
         } else {
             throw new ActionNotExist();

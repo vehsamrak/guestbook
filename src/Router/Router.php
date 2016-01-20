@@ -11,12 +11,18 @@ use Framework\AbstractController;
 class Router
 {
 
-    public function getController()
+    public function run()
     {
-        $routes = explode('/', $_SERVER['PATH_INFO']);
+        $action = null;
 
-        $route = ucfirst(strtolower($routes[1]));
-        $action = strtolower($routes[2]);
+        if (isset($_SERVER['PATH_INFO'])) {
+            $routes = explode('/', $_SERVER['PATH_INFO']);
+
+            $route = ucfirst(strtolower($routes[1]));
+            $action = strtolower($routes[2]);
+        } else {
+            $route = 'Index';
+        }
 
         $controllerName = 'Controller\\' . $route . 'Controller';
 

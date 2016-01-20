@@ -17,5 +17,4 @@ spl_autoload_register(function ($className) {
 });
 
 $router = new Router\Router();
-$controller = $router->getController();
-$controller->render();
+$controller = $router->run();
