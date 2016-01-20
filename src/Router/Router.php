@@ -39,7 +39,7 @@ class Router
      * @param array $routes
      * @return string
      */
-    private function getControllerName(array $routes)
+    private function getControllerName(array $routes): string
     {
         $route = self::INDEX_NAME;
 
@@ -54,7 +54,7 @@ class Router
      * @param array $routes
      * @return string
      */
-    private function getAction(array $routes)
+    private function getAction(array $routes): string
     {
         $action = self::INDEX_NAME;
 

@@ -13,7 +13,10 @@ spl_autoload_register(function ($className) {
     $className = str_replace("\\", "/", $className);
     $namespace = str_replace("\\", "/", __NAMESPACE__) ?: '/';
     $class = BASE_DIRECTORY . "/src/" . $namespace . $className . ".php";
-    include_once($class);
+
+    if (file_exists($class)) {
+        include_once($class);
+    }
 });
 
 $router = new Router\Router();
