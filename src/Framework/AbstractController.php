@@ -16,7 +16,7 @@ abstract class AbstractController
      * @return mixed
      * @throws ActionNotExist
      */
-    public function processAction($actionName)
+    public final function processAction($actionName)
     {
         $actionName = ($actionName ?? 'index') . 'Action';
 
