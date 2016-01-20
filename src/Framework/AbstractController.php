@@ -6,12 +6,22 @@
 
 namespace Framework;
 
+use Framework\Exception\ActionNotExist;
+
 abstract class AbstractController
 {
 
-    function processAction($actionName)
+    /**
+     * @param $actionName
+     * @return mixed
+     * @throws ActionNotExist
+     */
+    public function processAction($actionName)
     {
-        // TODO: implement method run
+        if (method_exists(self::class, $actionName) && is_callable([self::class, $actionName])) {
+            return static::$actionName();
+        } else {
+            throw new ActionNotExist();
+        }
     }
-
 }
