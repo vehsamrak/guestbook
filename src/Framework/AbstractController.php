@@ -45,4 +45,9 @@ abstract class AbstractController
     {
         $this->renderer->render($template, $parameters);
     }
+
+    public function getPost(): array
+    {
+        return $_POST;
+    }
 }
