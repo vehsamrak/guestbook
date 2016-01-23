@@ -11,9 +11,15 @@ use Framework\AbstractRepository;
 class EntryRepository extends AbstractRepository
 {
 
-    public function findAll(): array
+    /**
+     * @return Entry[]
+     */
+    public function findAllSortedByDate(): array
     {
-        $queryResults = $this->query('SELECT * FROM entries');
+        $connection = $this->connection;
+        $queryResults = $connection->query('SELECT * FROM entries ORDER BY created_at DESC');
+
+        $queryResults = $queryResults->fetchAll(\PDO::FETCH_ASSOC);
 
         $entryCollection = [];
 
@@ -24,5 +30,23 @@ class EntryRepository extends AbstractRepository
         }
 
         return $entryCollection;
+    }
+
+    public function save(Entry $entry): bool
+    {
+        $statement = $this->connection->prepare('
+          INSERT INTO entries (author, text, created_at)
+          VALUES (:author, :text, :createdAt)
+        ');
+
+        $author = $entry->getAuthor();
+        $text = $entry->getText();
+        $createdAt = $entry->getCreatedAt();
+
+        $statement->bindParam(':author', $author);
+        $statement->bindParam(':text', $text);
+        $statement->bindParam(':createdAt', $createdAt);
+
+        return $statement->execute();
     }
 }
