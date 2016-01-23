@@ -13,23 +13,9 @@ abstract class AbstractRepository
 
     protected $connection;
 
-    public final function __construct(\mysqli $connection)
+    public final function __construct(\PDO $connection)
     {
         $this->connection = $connection;
-    }
-
-    /**
-     * @throws DatabaseError
-     */
-    public function query(string $query)
-    {
-        $queryResult = $this->connection->query($query);
-
-        if (!($queryResult)) {
-            throw new DatabaseError($this->connection->errno, $this->connection->error);
-        }
-
-        return $queryResult->fetch_all(MYSQLI_ASSOC);
     }
 
     public function createTables()
