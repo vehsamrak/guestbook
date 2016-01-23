@@ -11,6 +11,15 @@ use Framework\Exception\ActionNotExist;
 abstract class AbstractController
 {
 
+    /** @var Renderer */
+    private $renderer;
+
+    public function __construct()
+    {
+        $this->renderer = new Renderer();
+    }
+
+
     /**
      * @param string|null $actionName
      * @return mixed
@@ -25,5 +34,15 @@ abstract class AbstractController
         } else {
             throw new ActionNotExist();
         }
+    }
+
+    /**
+     * Отрисовка шаблона
+     * @param string $template
+     * @param array  $parameters
+     */
+    public function render($template = 'index', array $parameters = [])
+    {
+        $this->renderer->render($template, $parameters);
     }
 }
