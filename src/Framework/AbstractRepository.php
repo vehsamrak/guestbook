@@ -6,8 +6,6 @@
 
 namespace Framework;
 
-use Framework\Exception\DatabaseError;
-
 abstract class AbstractRepository
 {
 
@@ -25,10 +23,13 @@ abstract class AbstractRepository
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
                 `author` VARCHAR(64) NOT NULL,
                 `text` TEXT NOT NULL,
+                `created_at` DATETIME NOT NULL,
                 PRIMARY KEY (`id`)
             )
             COLLATE='utf8_general_ci'
-            ENGINE=InnoDB;
+            ENGINE=InnoDB
+            AUTO_INCREMENT=1
+            ;
         ");
     }
 }
