@@ -4,9 +4,7 @@
  * Date Created: 23.01.16 16:23
  */
 
-namespace Framework\Exception;
-
-use Framework\Config;
+namespace Framework;
 
 class Database
 {

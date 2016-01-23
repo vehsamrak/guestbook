@@ -7,20 +7,22 @@
 namespace Entity;
 
 use Framework\AbstractRepository;
-use Framework\Exception\DatabaseError;
 
 class EntryRepository extends AbstractRepository
 {
 
-    public function findAll()
+    public function findAll(): array
     {
-        $query = "SELECT * FROM entries";
-        $result = $this->connection->query($query);
+        $queryResults = $this->query('SELECT * FROM entries');
 
-        if (!($result)) {
-            throw new DatabaseError($this->connection->errno, $this->connection->error);
+        $entryCollection = [];
+
+        if ($queryResults) {
+            foreach ($queryResults as $result) {
+                $entryCollection[] = new Entry($result['author'], $result['text']);
+            }
         }
 
-        $result->fetch_assoc();
+        return $entryCollection;
     }
 }

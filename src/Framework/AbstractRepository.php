@@ -6,6 +6,8 @@
 
 namespace Framework;
 
+use Framework\Exception\DatabaseError;
+
 abstract class AbstractRepository
 {
 
@@ -14,6 +16,20 @@ abstract class AbstractRepository
     public final function __construct(\mysqli $connection)
     {
         $this->connection = $connection;
+    }
+
+    /**
+     * @throws DatabaseError
+     */
+    public function query(string $query)
+    {
+        $queryResult = $this->connection->query($query);
+
+        if (!($queryResult)) {
+            throw new DatabaseError($this->connection->errno, $this->connection->error);
+        }
+
+        return $queryResult->fetch_all(MYSQLI_ASSOC);
     }
 
     public function createTables()

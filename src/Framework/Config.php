@@ -13,9 +13,9 @@ class Config
 
     public static function get($key)
     {
-        $config = require('../../config.php');
+        $config = require(__DIR__ . '/../../config.php');
 
-        if (isset($config[$key])) {
+        if (!isset($config[$key])) {
         	throw new ConfigParameterNotFound;
         }
 
