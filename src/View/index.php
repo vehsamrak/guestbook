@@ -12,7 +12,7 @@ use Entity\Entry;
 
 <form action="" method="post">
     <p>
-        Ваше имя: <input type="text"/>
+        Ваше имя: <input type="text" name="entry_author"/>
     </p>
     <p>
         <textarea name="entry_text" id="" cols="30" rows="10"></textarea>
