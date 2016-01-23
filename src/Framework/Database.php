@@ -12,16 +12,18 @@ class Database
 
     public function __construct()
     {
-        $this->connection = mysqli_connect(
+        $dsn = sprintf(
+            '%s:host=%s;dbname=%s',
+            Config::get('database_type'),
             Config::get('database_host'),
-            Config::get('database_user'),
-            Config::get('database_password'),
             Config::get('database_name')
         );
 
-        if (mysqli_connect_errno()) {
-            echo 'Не удалось подключиться к MySQL: ' . mysqli_connect_error();
-        }
+        $this->connection = new \PDO(
+            $dsn,
+            Config::get('database_user'),
+            Config::get('database_password')
+        );
     }
 
     /**
