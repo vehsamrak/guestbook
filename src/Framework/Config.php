@@ -6,6 +6,8 @@
 
 namespace Framework;
 
+use Framework\Exception\ConfigParameterNotFound;
+
 class Config
 {
 
@@ -13,6 +15,10 @@ class Config
     {
         $config = require('../../config.php');
 
-        return $config[$key];
+        if (isset($config[$key])) {
+        	throw new ConfigParameterNotFound;
+        }
+
+        return $config[$key] ;
     }
 }
