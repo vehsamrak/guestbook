@@ -9,14 +9,15 @@ use Entity\Entry;
 
 <h3>Гостевая книга</h3>
 
-
-<form action="" method="post">
+<form method="post">
     <p>
         Ваше имя: <input type="text" name="entry_author"/>
     </p>
+
     <p>
-        <textarea name="entry_text" id="" cols="30" rows="10"></textarea>
+        <textarea name="entry_text" id="" cols="30" rows="10" title="Текст сообщения"></textarea>
     </p>
+
     <p>
         <input type="submit" value="Оставить запись"/>
     </p>
@@ -26,12 +27,13 @@ use Entity\Entry;
 <hr>
 <?php foreach ($entries as $entry) { ?>
     <p>
-        <strong>Автор</strong>: <?= $entry->getAuthor() ?>
+        <strong>Автор</strong>: <?= $entry->getAuthor() ?><br/>
+        Дата: <?= $entry->getCreatedAt() ?>
     </p>
     <p>
         <?= $entry->getText() ?>
     </p>
-    <hr>
+    <hr/>
 <?php } ?>
 
 </body>

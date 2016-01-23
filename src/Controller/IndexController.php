@@ -26,6 +26,6 @@ class IndexController extends AbstractController
             $entryRepository->save($entry);
         }
 
-        $this->render(['entries' => $entryRepository->findAll()]);
+        $this->render(['entries' => $entryRepository->findAllSortedByDate()]);
     }
 }
