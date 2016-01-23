@@ -6,13 +6,18 @@
 
 namespace Controller;
 
+use Entity\EntryRepository;
 use Framework\AbstractController;
+use Framework\Database;
 
 class IndexController extends AbstractController
 {
 
     public function indexAction()
     {
-        echo '<html><b>hello!</b></html>';
+        $connection = (new Database())->getConnection();
+        $entryRepository = new EntryRepository($connection);
+
+        $this->render(['entries' => $entryRepository->findAll()]);
     }
 }
