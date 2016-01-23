@@ -9,9 +9,9 @@ namespace Framework;
 abstract class AbstractRepository
 {
 
-    private $connection;
+    protected $connection;
 
-    public function __construct(\mysqli $connection)
+    public final function __construct(\mysqli $connection)
     {
         $this->connection = $connection;
     }
