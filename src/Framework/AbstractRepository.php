@@ -16,9 +16,9 @@ abstract class AbstractRepository
         $this->connection = $connection;
     }
 
-    public function createTables()
+    public static function createTables(\PDO $connection)
     {
-        $this->connection->query("
+        $connection->query("
             CREATE TABLE IF NOT EXISTS `entries` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
                 `author` VARCHAR(64) NOT NULL,
