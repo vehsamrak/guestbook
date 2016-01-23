@@ -37,7 +37,6 @@ class Router
 
     /**
      * @param array $routes
-     * @return string
      */
     private function getControllerName(array $routes): string
     {
@@ -52,7 +51,6 @@ class Router
 
     /**
      * @param array $routes
-     * @return string
      */
     private function getAction(array $routes): string
     {
