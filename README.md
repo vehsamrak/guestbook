@@ -1,4 +1,4 @@
-## PHP guestbook based on Vehsa Framework
+## Guestbook based on PHP7 Vehsa Framework
 
 ### Без сторонних зависимостей реализован MVC микрофреймворк
 ### На базе фреймворка создано приложение "Гостевая Книга"
